@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<script type="text/javascript" src="cordova.js"></script>
+
+<script type="text/javascript" charset="utf-8">          
+    // Wait for device API libraries to load         
+    document.addEventListener("deviceready", onDeviceReady, false);      
+      // device APIs are available  
+  
+      function onDeviceReady() {         
+      // find all contacts with ' ' in any name field    ,If field is empty or full
+      var options = new ContactFindOptions();    
+      options.filter = "";   
+      options.multiple = true;
+      /*
+      Keyword search  
+      Name: "displayName"  ,
+      Phone number: " phoneNumbers" //ContactField[] 
+  
+      */  
+      var fields = ["displayName", "name", "phoneNumbers"];                
+      navigator.contacts.find(fields, onSuccess, onError, options);            } 
+      
+  
+      // onSuccess: Get a snapshot of the current contacts        
+      function onSuccess(contacts) {     
+  
+        // Contact and telephone number on here
+        var aResult = [];    
+  
+        for (var i = 0; contacts[i]; i++) {                    
+          console.log("Display Name = " + contacts[i].displayName); 
+  
+          if (contacts[i].phoneNumbers && contacts[i].phoneNumbers.length) {
+  
+            var contactPhoneList =[];
+  
+            for (var j = 0; contacts[i].phoneNumbers[j]; j++) {
+           // alert(contacts[i].phoneNumbers[j].type+"    "+contacts[i].displayName+"---------" + contacts[i].phoneNumbers[j].value );
+  
+           contactPhoneList.push(
+           { 
+            'type' :  contacts[i].phoneNumbers[j].type, 
+            'value' : contacts[i].phoneNumbers[j].value
+          }
+          );
+  
+         };        
+  
+         aResult.push({
+          name:contacts[i].displayName,
+          phone:contactPhoneList
+        });
+  
+       };
+          //
+        }
+  
+          //Iterative acquisition contacts and number
+      for (var i = 0; aResult[i]; i++) {
+        for (var j = 0 ; aResult[i].phone[j]; j++) {
+          //  document.getElementById('people').innerHTML = "Name: " + aResult[i].name + " Type: "+ aResult[i].phone[j].type+" Number: "+aResult[i].phone[j].value + "<br>"
+            
+        };
+  
+  
+      };
+    }   
+      // onError: Failed to get the contacts   
+      function onError(contactError) {                alert('onError!');            }   
+  
+      function baozi(){ alert("S1");}
+  
+      function intent() {       onDeviceReady();     }    
+  
+  
+    </script>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+    document.addEventListener("deviceready", function() {
+                    var deviceinfo = "cordova:" + device.cordova + "<br>Model:" + device.model + "<br>UUID:" + device.uuid + "<br>Platform:" + device.platform + "(" + device.version + ")";
+                    document.getElementById("deviceInfoText").innerHTML = deviceinfo;
+                }, false);
+    
+    
+    </script>
+
+<script>
+    window.onload=function()
+    {
+        document.getElementById('btnTakePicture').addEventListener('click', takePic);
+        document.getElementById('btnClear').addEventListener('click',function(){
+           document.getElementById('imgArea').src=""; 
+        });
+                                                             
+    }
+    
+    function takePic(e)
+    {
+        var options = {
+            quality: 80,
+            destinationType: Camera.DestinationType.FILE_URI,
+            encodingType: Camera.EncodingType.JPEG,
+            mediaType: Camera.MediaType.PICTURE,
+            targetWidth: 1200,
+            targetHeight: 800
+        }
+        navigator.camera.getPicture(success,fail, options);
+        
+    }
+        
+    function success(thePicture)
+    {
+        var image = document.getElementById('imgArea');
+        //alert(thePicture);
+        image.src = thePicture;
+        document.getElementById('btnTakePicture').style.display = none
+    }
+        
+    function fail(e)
+    {
+        alert("Image failed: " + e.message);
+    }
+    </script>
+
+
+
+
+<body>
+
+<div data-role="page" id="page1">
+
+
+    <!-- First Page Starts Here -->
+	<div data-role="header">
+		<h1>Dublin Bike Rental </h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+
+
+<!-- navigation -->
+<fieldset class="ui-grid-b">
+    <div class="ui-block-a"><a href="#page1" style="text-decoration: none; " data-transition="flip"><input type="button" value="Home"></a></div>
+    <div class="ui-block-b"><a href="#page2" style="text-decoration: none;" data-transition="pop"><input type="reset" value="bikes"></a></div>
+    <div class="ui-block-c"><a href="#page3" style="text-decoration: none;" data-transition="slide"><input type="submit" value="rules"></a></div>
+</fieldset>
+
+<!-- navigation -->
+
+<h1>IRELANDS BEST BIKE RENTAL COMAPANY</h1>
+  
+
+
+        <div class="ui-grid-a">
+            <div class="ui-block-a"><div style="background-image:url('game1.jpg');background-repeat:no-repeat;background-size:cover;" class="ui-bar ui-bar-a" style="height:280px"><image src="https://previews.123rf.com/images/gbh007/gbh0071802/gbh007180200410/95799342-healthy-lifestyle-people-riding-bicycles.jpg" style="width:100%"></image>no exta fees </div></div>
+            <div class="ui-block-b"><div style="background-image:url('game2.jpg');background-repeat:no-repeat;background-size:cover;" class="ui-bar ui-bar-a" style="height:280px"><image src="https://jpninfo.com/wp-content/uploads/2017/04/bicycle-parking.jpg" style="width:100%"></image>over 100 of these</div></div>
+            </div><!-- /grid-a -->
+	</div><!-- /content -->
+
+<!-- Link to gestures page -->
+<div class="ui-body ui-body-a ui-corner-all">
+        <h3 class="ui-bar ui-bar-a ui-corner-all" id="loggedShow">Not logged In/log in to personalize your experiense </h3>
+    <a href="#page4" class="ui-btn ui-shadow" data-transition="pop">only 3 steps to get your self into the road </a>
+    <a href="#loginPage" class="ui-btn ui-shadow" data-transition="pop" id="x">Log-In</a>
+    <a href="#loginPage" class="ui-btn ui-shadow" data-transition="pop" id="y">Log Out</a>
+</div>
+<!-- Link to gestures page end-->
+
+
+<!-- Link to geolocation page -->
+<div class="ui-body ui-body-a ui-corner-all">
+    <a href="#page5" class="ui-btn ui-shadow" data-transition="slideup">Find a bike station near you with a press of a button </a>
+</div>
+<!-- Link to geolocation page end-->
+
+<!-- Link to camera page -->
+<div class="ui-body ui-body-a ui-corner-all">
+    <a href="#page6" class="ui-btn ui-shadow" data-transition="slideup">scan the QR code to unlock the bike </a>
+</div>
+<!-- Link to camera page end-->
+
+
+
+	<div data-role="footer">
+        <h4>&copy; Bike rental 2020</h4>
+        
+        
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+
+<!-- First Page ends Here -->
+
+
+<!-- Second Page Starts Here -->
+
+
+<div data-role="page" id="page2">
+
+
+
+	<div data-role="header">
+		<h1>Dublin bike rental </h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+       
+<!-- navigation -->
+<fieldset class="ui-grid-b">
+    <div class="ui-block-a"><a href="#page1" style="text-decoration: none;" data-transition="flip"><input type="button" value="Home"></a></div>
+    <div class="ui-block-b"><a href="#page2" style="text-decoration: none;" data-transition="flip"><input type="reset" value="bikes"></a></div>
+    <div class="ui-block-c"><a href="#page3" style="text-decoration: none;" data-transition="slide"><input type="submit" value="rules"></a></div>
+</fieldset>
+
+<!-- navigation -->
+
+
+
+
+
+        <form>
+            <input data-type="search" id="searchForCollapsibleSet">
+        </form>
+            <div data-role="collapsibleset" data-filter="true" data-inset="true" id="collapsiblesetForFilter" data-input="#searchForCollapsibleSet">
+                <div data-role="collapsible" data-filtertext="Animals">
+                    <h3>Racing bikes </h3>
+                    <ul data-role="listview" data-inset="false">
+                        <li>Carrera z100</li>
+                        <li>turbo t20</li>
+                        
+                    </ul>
+                </div>
+                <div data-role="collapsible" data-filtertext="Cars">
+                    <h3>kids bikes </h3>
+                    <ul data-role="listview" data-inset="false">
+                        <li>Viking velgriavia (girls bike )</li>
+                        <li>nuke proff (boys bike)</li>
+                        <li>bikes with stabilizer</li>
+                        
+                    </ul>
+                </div>
+                <div data-role="collapsible" data-filtertext="Planets">
+                    <h3>family bikes </h3>
+                    <ul data-role="listview" data-inset="false">
+                        <li>tandem for 2 people </li>
+                        <li>giant (with child seat at the back)</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+
+
+
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy; bike rentals </h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+<!-- Second Page ends Here -->
+
+
+
+
+   <!-- Third Page Starts Here -->
+
+
+   <div data-role="page" id="page3">
+   <div data-role="header">
+    <h1></h1>
+</div><!-- /header -->
+
+<div role="main" class="ui-content">
+   
+<!-- navigation -->
+<fieldset class="ui-grid-b">
+<div class="ui-block-a"><a href="#page1" style="text-decoration: none;" data-transition="flip"><input type="button" value="Home"></a></div>
+<div class="ui-block-b"><a href="#page2" style="text-decoration: none;" data-transition="pop"><input type="reset" value="bikes "></a></div>
+<div class="ui-block-c"><a href="#page3" style="text-decoration: none;" data-transition="flow"><input type="submit" value="rules and regulations"></a></div>
+</fieldset>
+
+<!-- navigation -->
+
+
+
+
+
+<h3 class="ui-bar ui-bar-a ui-corner-all">terms and conditon </h3>
+<div class="ui-body ui-body-a ui-corner-all">
+    <p><image src="data:image/jpeg;base64,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" style="width:100%"></image></p>
+    <p>BY renting a bike you agree to the fallowing conditions</p>
+    <p >IF you present Fake ID your account will be permanently banded </p>
+    <p> IF you do not return the bike in the given time frame there will be a $500 fine </p>
+    <p>IF the bike is damaged while under your control and it was coused by another individual ,the damage will not be covered</p>
+
+
+</div>
+
+
+
+</div><!-- /content -->
+
+<div data-role="footer">
+    <h4>&copy; bike rental </h4>
+</div><!-- /footer -->
+</div><!-- /page -->
+
+<!-- third Page ends Here -->
+
+
+
+
+ <!-- fourth Page Starts Here -->
+
+
+ <div data-role="page" id="page4">
+    <div data-role="header">
+     <h1>3 easy steps to rent a bike</h1>
+ </div><!-- /header -->
+ 
+ <div role="main" class="ui-content">
+    
+ <!-- navigation -->
+ <fieldset class="ui-grid-b">
+ <div class="ui-block-a"><a href="#page1" style="text-decoration: none;" data-transition="flip"><input type="button" value="HOME"></a></div>
+ <div class="ui-block-b"><a href="#page2" style="text-decoration: none;" data-transition="pop"><input type="reset" value="BIKES"></a></div>
+ <div class="ui-block-c"><a href="#page3" style="text-decoration: none;" data-transition="slide"><input type="submit" value="TERMS AND CONDITIONS"></a></div>
+ </fieldset>
+ 
+ <!-- navigation -->
+ 
+ 
+ 
+ 
+ 
+ <h3 class="ui-bar ui-bar-a ui-corner-all"></h3>
+ <div class="ui-body ui-body-a ui-corner-all">
+     
+     <p><image src="https://lh3.googleusercontent.com/proxy/17xjAXL91UYxQxKFVVuheK5053OzDpz-e8SzWtOBK2MqyrZqRAb6GuNpsscvwO6zMw5E_Iy8slCqrM9VaCosiTUNHKoIyTQWDnhR0RCV1RuKRTU9rEfK9nI" style="width:100%"></image></p>
+     <p >
+        <h3 class="ui-bar ui-bar-a ui-corner-all" id="gestureDiv1">Scan a valid ID  </h3>
+        <h3 class="ui-bar ui-bar-a ui-corner-all" id="gestureDiv2">Select your package </h3>
+        <h3 class="ui-bar ui-bar-a ui-corner-all" id="gestureDiv3">Pay and GO</h3>
+
+
+        
+
+        <script>
+                  var myElement = document.getElementById('gestureDiv1');
+                  var mc = new Hammer(myElement);
+                  mc.on("swipeleft", function(ev) {
+                      document.getElementById('gestureDiv1').style.display = "none";
+                      alert("You are now due to attend")
+                  });
+                  
+                  
+                  
+                  var myElement2 = document.getElementById('gestureDiv2');
+                  var mc2 = new Hammer(myElement2);
+                  mc2.on("swiperight", function(ev) {
+                      document.getElementById('gestureDiv2').style.display = "none";
+                      alert("The wife will be happy")
+                  });
+             
+          
+
+// Pinch Script Start-->
+
+    var myElement3 = document.getElementById('gestureDiv3');
+        var mc3 = new Hammer.Manager(myElement3);
+           // call the pinch from the Hammer library
+            var pinch = new Hammer.Pinch();
+           
+            // add to the Manager
+            mc3.add([pinch]);
+            // now the function will work.
+
+mc3.on("pinch rotate", function(ev) {
+document.getElementById('gestureDiv3').style.display = "none";
+alert("car Booked for Monday 8:00 p.m.")
+});
+// Pinch Script End-->
+    
+    </script>
+
+
+
+
+
+     </p>
+ </div>
+ 
+ 
+ 
+ </div><!-- /content -->
+ 
+ <div data-role="footer">
+     <h4>&copy; bike rentals </h4>
+ </div><!-- /footer -->
+ </div><!-- /page -->
+ 
+ <!-- fourth Page ends Here -->
+
+
+
+
+
+ <!-- Fifth Page Starts Here -->
+
+
+ <div data-role="page" id="page5">
+    <div data-role="header">
+     <h1>Find a bike station </h1>
+ </div><!-- /header -->
+ 
+ <div role="main" class="ui-content">
+    
+ <!-- navigation -->
+ <fieldset class="ui-grid-b">
+ <div class="ui-block-a"><a href="#page1" style="text-decoration: none;" data-transition="flip"><input type="button" value="HOME"></a></div>
+ <div class="ui-block-b"><a href="#page2" style="text-decoration: none;" data-transition="pop"><input type="reset" value="BIKES"></a></div>
+ <div class="ui-block-c"><a href="#page3" style="text-decoration: none;" data-transition="slide"><input type="submit" value="TERMS AND CONDITIONS"></a></div>
+ </fieldset>
+ 
+ <!-- navigation -->
+ 
+ 
+ 
+ 
+ 
+ <h3 class="ui-bar ui-bar-a ui-corner-all"></h3>
+ <div class="ui-body ui-body-a ui-corner-all">
+     <p id="mapholder"><image src="https://img.resized.co/buzz_ie/eyJkYXRhIjoie1widXJsXCI6XCJodHRwczpcXFwvXFxcL21lZGlhLmJ1enouaWVcXFwvdXBsb2Fkc1xcXC8yMDE4XFxcLzAxXFxcLzI0MTUzMTExXFxcL2R1Ymxpbi1iaWtlLXNjaGVtZS0xMDI0eDUzOS5wbmdcIixcIndpZHRoXCI6NjIxLFwiaGVpZ2h0XCI6MzMyLFwiZGVmYXVsdFwiOlwiaHR0cHM6XFxcL1xcXC93d3cuYnV6ei5pZVxcXC9pXFxcL25vLWltYWdlLnBuZ1wifSIsImhhc2giOiIwNTUwNzdiZTU1ZTJkM2E2NzUxMTI2ZDYxZDVmYmNkMjEzZmVjMmRlIn0=/new-dublin-bike-stations-are-coming-to-15-locations.png" style="width:100%"></image></p>
+     <button onclick="getLocation()">Find Me A Bike station </button>
+    
+        <p id="atms"></p>  
+ 
+ 
+ </div>
+ 
+ 
+ 
+ </div><!-- /content -->
+ 
+ <div data-role="footer">
+     <h4>&copy; bike rentals </h4>
+ </div><!-- /footer -->
+ </div><!-- /page -->
+ 
+ <!-- fifth Page ends Here -->
+ 
+ <div data-role="page" id="page6">
+
+
+    <!-- sixth page  Page Starts Here -->
+	<div data-role="header">
+		<h1>Unlock your bike </h1>
+	</div><!-- /header -->
+
+	<div role="main" class="ui-content">
+
+
+<!-- navigation -->
+<fieldset class="ui-grid-b">
+    <div class="ui-block-a"><a href="#page1" style="text-decoration: none; " data-transition="flip"><input type="button" value="HOME"></a></div>
+    <div class="ui-block-b"><a href="#page2" style="text-decoration: none;" data-transition="pop"><input type="reset" value="BIKES"></a></div>
+    <div class="ui-block-c"><a href="#page3" style="text-decoration: none;" data-transition="slide"><input type="submit" value="TERMS AND CONDITIONS"></a></div>
+</fieldset>
+
+<!-- navigation -->
+
+
+    <h3 class="ui-bar ui-bar-a ui-corner-all">Use The Camera to scan the QR code </h3>
+
+
+      
+
+
+<!-- Link to geolocation page -->
+<div class="ui-body ui-body-a ui-corner-all">
+    
+    <p><img id="imgArea" style="width:50%;"/>
+       
+  
+     <p><image src="https://i0.wp.com/www.superwebsolution.com/wp-content/uploads/2019/12/qr-code.jpg?fit=640%2C360" style="width:100%"></image></p>
+    <button style="font-size:24px" id="btnTakePicture"> <i class="fa fa-camera-retro"></i></button>
+   
+    
+
+</div>
+<!-- Link to geolocation page end-->
+    
+	<div data-role="footer">
+        <h4>&copy; Bike rental 2020</h4>
+        
+        
+	</div><!-- /footer -->
+</div><!-- /page -->
+
+</div>
+
+
+
+ <script>
+
+    var x = document.getElementById("demoddd");
+    
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    
+    function showPosition(position) {
+        var latlon = position.coords.latitude + "," + position.coords.longitude;
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
+        +latlon+"&zoom=14&size=400x300&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU";
+        document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"' width='100%'>";
+        document.getElementById("atms").innerHTML = "Walk to your left there is a shop selling this only 300Mtr's away"
+    }
+    //To use this code on your website, get a free API key from Google.
+    //Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+    
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                x.innerHTML = "User denied the request for Geolocation."
+                break;
+            case error.POSITION_UNAVAILABLE:
+                x.innerHTML = "Location information is unavailable."
+                break;
+            case error.TIMEOUT:
+                x.innerHTML = "The request to get user location timed out."
+                break;
+            case error.UNKNOWN_ERROR:
+                x.innerHTML = "An unknown error occurred."
+                break;
+        }
+    }
+    </script>
+
+<!-- Second Page Starts Here -->
+
+
+<div data-role="page" id="loginPage">
+
+
+
+        <div data-role="header">
+            <h1>log in </h1>
+        </div><!-- /header -->
+    
+        <div role="main" class="ui-content">
+           
+    <!-- navigation -->
+    <fieldset class="ui-grid-b">
+        <div class="ui-block-a"><a href="#page1" style="text-decoration: none;" data-transition="flip"><input type="button" value="HOME" ></a></div>
+        <div class="ui-block-b"><a href="#page2" style="text-decoration: none;" data-transition="pop"><input type="reset" value="BIKES "></a></div>
+        <div class="ui-block-c"><a href="#page3" style="text-decoration: none;" data-transition="slide"><input type="submit" value="TERMS AND CONDITIONS"></a></div>
+    </fieldset>
+    
+    <!-- navigation -->
+    
+    
+    
+    
+    
+            <form>
+                <input data-type="text" id="username" placeholder="Username">
+               
+                <button id="login" onclick="logIn()">LogIn</button>
+                <button id="logout" onclick="logOut()">LogOut</button>
+              
+            </form>
+    
+    <script>
+    
+    function logIn() {
+        if (typeof(Storage) !== "undefined") {
+        // Store
+        var who = document.getElementById("username").value
+        localStorage.setItem("username", who);
+        localStorage.setItem("in", 1);
+        // Retrieve
+       //document.getElementById("logged").innerHTML = "Welcome back " + localStorage.getItem("username");
+        document.location.reload(true)
+       // document.getElementById("login").style.display = "none"
+    } else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+    }
+    }
+    
+    function logOut(){
+    
+         localStorage.removeItem("username");
+         localStorage.setItem("in", 2);
+         imOut()
+     }
+    
+    </script>
+    
+        </div><!-- /content -->
+    
+        <div data-role="footer" class="fixed">
+            <h4>&copy; bike rental2020</h4>
+        </div><!-- /footer -->
+    </div><!-- /page -->
+    
+    <!-- Second Page ends Here -->
+
+    <script>
+
+            function imIn(){
+              var xyz =  localStorage.getItem("in")
+             
+        
+        if(xyz==1){
+            document.getElementById("loggedShow").innerHTML = "Logged in as: " + localStorage.getItem("username");
+                window.location.href = "#page1";
+                document.getElementById("login").style.display = "none"
+                
+                document.getElementById("x").style.display = "none"
+                document.getElementById("y").style.display = "block"
+        }
+        
+        else {
+        
+            document.getElementById("loggedShow").innerHTML = "Not Yet Logged In"  ;
+            document.getElementById("y").style.display = "none"
+            document.getElementById("logout").style.display = "none"
+        }
+        
+            }
+        
+            function imOut(){
+                document.getElementById("login").style.display = "block"
+                document.getElementById("logout").style.display = "none"
+                document.getElementById("y").style.display = "none"
+                document.getElementById("x").style.display = "block"
+        document.getElementById("loggedShow").innerHTML = "Not Logged in" 
+        window.location.href = "#page1";
+        }
+        
+        
+        imIn()
